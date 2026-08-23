@@ -29,6 +29,8 @@ app.use('/api/trends', trendRoutes);
 app.use('/api/content', contentRoutes);
 app.use('/api/automation', automationRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/api/repurpose', require('./routes/repurposeRoutes'));
+app.use('/api/settings/brand', require('./routes/brandRoutes'));
 
 app.get('/api/activity', (req, res) => {
   const activityService = require('./services/activity/activityService');

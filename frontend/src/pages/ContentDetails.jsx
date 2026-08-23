@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fetchContentById, approveContentItem, scheduleContentItem } from '../services/api';
-import { ArrowLeft, ShieldCheck, CheckCircle2, CalendarDays, ExternalLink, Sparkles } from 'lucide-react';
+import { ArrowLeft, ShieldCheck, CheckCircle2, CalendarDays, ExternalLink, Sparkles, Repeat2 } from 'lucide-react';
 
 export default function ContentDetailsPage() {
   const { contentId } = useParams();
@@ -47,12 +47,20 @@ export default function ContentDetailsPage() {
         <button className="vw-btn vw-btn-secondary" onClick={() => navigate('/content')}>
           <ArrowLeft size={16} /> Back to Content Studio
         </button>
-        <button
-          className={`vw-btn ${item.status === 'SCHEDULED' ? 'vw-btn-secondary text-emerald-700 bg-emerald-50 border-emerald-200' : 'vw-btn-primary'}`}
-          onClick={handleApprove}
-        >
-          <CheckCircle2 size={16} /> {item.status === 'SCHEDULED' ? 'Approved & Scheduled' : 'Approve & Schedule'}
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            className="vw-btn vw-btn-secondary border-purple-200 text-purple-700 bg-purple-50 hover:bg-purple-100"
+            onClick={() => navigate(`/repurpose/${contentId}`)}
+          >
+            <Repeat2 size={16} /> Repurpose into 4 Formats
+          </button>
+          <button
+            className={`vw-btn ${item.status === 'SCHEDULED' ? 'vw-btn-secondary text-emerald-700 bg-emerald-50 border-emerald-200' : 'vw-btn-primary'}`}
+            onClick={handleApprove}
+          >
+            <CheckCircle2 size={16} /> {item.status === 'SCHEDULED' ? 'Approved & Scheduled' : 'Approve & Schedule'}
+          </button>
+        </div>
       </div>
 
       {notification && (

@@ -7,6 +7,9 @@ import TrendsPage from '../pages/Trends';
 import TrendDetailsPage from '../pages/TrendDetails';
 import ContentPage from '../pages/Content';
 import ContentDetailsPage from '../pages/ContentDetails';
+import RepurposeListPage from '../pages/RepurposeList';
+import RepurposeWorkspacePage from '../pages/RepurposeWorkspace';
+import RepurposeFormatDetailPage from '../pages/RepurposeFormatDetail';
 import CalendarPage from '../pages/Calendar';
 import AnalyticsPage from '../pages/Analytics';
 import SourcesPage from '../pages/Sources';
@@ -64,6 +67,9 @@ export default function AppRoutes({
           }
         />
         <Route path="/content/:contentId" element={<ContentDetailsPage />} />
+        <Route path="/repurpose" element={<RepurposeListPage trends={trends} />} />
+        <Route path="/repurpose/:contentId" element={<RepurposeWorkspacePage />} />
+        <Route path="/repurpose/:contentId/:format" element={<RepurposeFormatDetailPage />} />
         <Route
           path="/calendar"
           element={
@@ -79,6 +85,15 @@ export default function AppRoutes({
         <Route path="/activity" element={<ActivityPage />} />
         <Route
           path="/settings"
+          element={
+            <SettingsPage
+              automationStatus={automationStatus}
+              refreshData={refreshData}
+            />
+          }
+        />
+        <Route
+          path="/settings/brand"
           element={
             <SettingsPage
               automationStatus={automationStatus}

@@ -4,6 +4,7 @@ import {
   LayoutDashboard,
   TrendingUp,
   FileText,
+  Repeat2,
   CalendarDays,
   BarChart3,
   Database,
@@ -19,11 +20,12 @@ export default function Sidebar({ automationStatus, isOpen, onClose }) {
     { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { to: '/trends', label: 'Trends Intelligence', icon: TrendingUp },
     { to: '/content', label: 'Content Studio', icon: FileText },
+    { to: '/repurpose', label: 'Content Repurposing', icon: Repeat2 },
     { to: '/calendar', label: 'Publishing Calendar', icon: CalendarDays },
     { to: '/analytics', label: 'Analytics', icon: BarChart3 },
     { to: '/sources', label: 'Source Knowledge', icon: Database },
     { to: '/activity', label: 'Activity Logs', icon: Activity },
-    { to: '/settings', label: 'Settings', icon: Settings }
+    { to: '/settings', label: 'Settings & Brand DNA', icon: Settings }
   ];
 
   return (

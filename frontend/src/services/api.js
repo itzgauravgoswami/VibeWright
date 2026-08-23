@@ -101,3 +101,69 @@ export async function fetchIntegrations() {
   if (!res.ok) throw new Error('Failed to fetch integrations');
   return res.json();
 }
+
+// --- ROUND B: REPURPOSING & BRAND PROFILE APIS ---
+
+export async function fetchRepurposeMasterList() {
+  const res = await fetch(`${API_BASE_URL}/repurpose`);
+  if (!res.ok) throw new Error('Failed to fetch repurpose master list');
+  return res.json();
+}
+
+export async function fetchRepurposePackage(contentId) {
+  const res = await fetch(`${API_BASE_URL}/repurpose/${contentId}`);
+  if (!res.ok) throw new Error(`Failed to fetch repurpose package for ${contentId}`);
+  return res.json();
+}
+
+export async function generateRepurposedFormats(contentId, formats) {
+  const res = await fetch(`${API_BASE_URL}/repurpose/${contentId}/generate`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ formats })
+  });
+  if (!res.ok) throw new Error('Failed to generate repurposed formats');
+  return res.json();
+}
+
+export async function regenerateFormat(contentId, format, options = {}) {
+  const res = await fetch(`${API_BASE_URL}/repurpose/${contentId}/${format}/regenerate`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(options)
+  });
+  if (!res.ok) throw new Error(`Failed to regenerate format ${format}`);
+  return res.json();
+}
+
+export async function updateRepurposedFormat(contentId, format, content) {
+  const res = await fetch(`${API_BASE_URL}/repurpose/${contentId}/${format}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ content })
+  });
+  if (!res.ok) throw new Error(`Failed to update format ${format}`);
+  return res.json();
+}
+
+export async function scheduleRepurposedPackage(contentId) {
+  const res = await fetch(`${API_BASE_URL}/repurpose/${contentId}/schedule`, { method: 'POST' });
+  if (!res.ok) throw new Error('Failed to schedule repurposed package');
+  return res.json();
+}
+
+export async function fetchBrandProfile() {
+  const res = await fetch(`${API_BASE_URL}/settings/brand`);
+  if (!res.ok) throw new Error('Failed to fetch brand profile');
+  return res.json();
+}
+
+export async function updateBrandProfile(profile) {
+  const res = await fetch(`${API_BASE_URL}/settings/brand`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(profile)
+  });
+  if (!res.ok) throw new Error('Failed to update brand profile');
+  return res.json();
+}

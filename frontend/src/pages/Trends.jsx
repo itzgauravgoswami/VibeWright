@@ -54,11 +54,7 @@ export default function TrendsPage({ trends, onTriggerDiscovery, isDiscovering }
             {categories.map((cat) => (
               <button
                 key={cat}
-                className={`px-3 py-1 rounded-full text-xs font-bold transition-all whitespace-nowrap flex-shrink-0 ${
-                  selectedCategory === cat
-                    ? 'bg-blue-600 text-white shadow-sm'
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                }`}
+                className={`vw-category-pill ${selectedCategory === cat ? 'active' : 'inactive'}`}
                 onClick={() => setSelectedCategory(cat)}
               >
                 {cat}
